@@ -1,0 +1,255 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> expression ADD expression
+Rule 2     expression -> expression SUB expression
+Rule 3     expression -> expression TIMES expression
+Rule 4     expression -> expression DIVIDE expression
+Rule 5     expression -> NUMBER
+Rule 6     expression -> LPAREN expression RPAREN
+
+Terminals, with rules where they appear
+
+ADD                  : 1
+DIVIDE               : 4
+LPAREN               : 6
+NUMBER               : 5
+RPAREN               : 6
+SUB                  : 2
+TIMES                : 3
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 1 1 2 2 3 3 4 4 6 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . expression ADD expression
+    (2) expression -> . expression SUB expression
+    (3) expression -> . expression TIMES expression
+    (4) expression -> . expression DIVIDE expression
+    (5) expression -> . NUMBER
+    (6) expression -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 2
+    LPAREN          shift and go to state 3
+
+    expression                     shift and go to state 1
+
+state 1
+
+    (0) S' -> expression .
+    (1) expression -> expression . ADD expression
+    (2) expression -> expression . SUB expression
+    (3) expression -> expression . TIMES expression
+    (4) expression -> expression . DIVIDE expression
+
+    ADD             shift and go to state 4
+    SUB             shift and go to state 5
+    TIMES           shift and go to state 6
+    DIVIDE          shift and go to state 7
+
+
+state 2
+
+    (5) expression -> NUMBER .
+
+    ADD             reduce using rule 5 (expression -> NUMBER .)
+    SUB             reduce using rule 5 (expression -> NUMBER .)
+    TIMES           reduce using rule 5 (expression -> NUMBER .)
+    DIVIDE          reduce using rule 5 (expression -> NUMBER .)
+    $end            reduce using rule 5 (expression -> NUMBER .)
+    RPAREN          reduce using rule 5 (expression -> NUMBER .)
+
+
+state 3
+
+    (6) expression -> LPAREN . expression RPAREN
+    (1) expression -> . expression ADD expression
+    (2) expression -> . expression SUB expression
+    (3) expression -> . expression TIMES expression
+    (4) expression -> . expression DIVIDE expression
+    (5) expression -> . NUMBER
+    (6) expression -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 2
+    LPAREN          shift and go to state 3
+
+    expression                     shift and go to state 8
+
+state 4
+
+    (1) expression -> expression ADD . expression
+    (1) expression -> . expression ADD expression
+    (2) expression -> . expression SUB expression
+    (3) expression -> . expression TIMES expression
+    (4) expression -> . expression DIVIDE expression
+    (5) expression -> . NUMBER
+    (6) expression -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 2
+    LPAREN          shift and go to state 3
+
+    expression                     shift and go to state 9
+
+state 5
+
+    (2) expression -> expression SUB . expression
+    (1) expression -> . expression ADD expression
+    (2) expression -> . expression SUB expression
+    (3) expression -> . expression TIMES expression
+    (4) expression -> . expression DIVIDE expression
+    (5) expression -> . NUMBER
+    (6) expression -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 2
+    LPAREN          shift and go to state 3
+
+    expression                     shift and go to state 10
+
+state 6
+
+    (3) expression -> expression TIMES . expression
+    (1) expression -> . expression ADD expression
+    (2) expression -> . expression SUB expression
+    (3) expression -> . expression TIMES expression
+    (4) expression -> . expression DIVIDE expression
+    (5) expression -> . NUMBER
+    (6) expression -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 2
+    LPAREN          shift and go to state 3
+
+    expression                     shift and go to state 11
+
+state 7
+
+    (4) expression -> expression DIVIDE . expression
+    (1) expression -> . expression ADD expression
+    (2) expression -> . expression SUB expression
+    (3) expression -> . expression TIMES expression
+    (4) expression -> . expression DIVIDE expression
+    (5) expression -> . NUMBER
+    (6) expression -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 2
+    LPAREN          shift and go to state 3
+
+    expression                     shift and go to state 12
+
+state 8
+
+    (6) expression -> LPAREN expression . RPAREN
+    (1) expression -> expression . ADD expression
+    (2) expression -> expression . SUB expression
+    (3) expression -> expression . TIMES expression
+    (4) expression -> expression . DIVIDE expression
+
+    RPAREN          shift and go to state 13
+    ADD             shift and go to state 4
+    SUB             shift and go to state 5
+    TIMES           shift and go to state 6
+    DIVIDE          shift and go to state 7
+
+
+state 9
+
+    (1) expression -> expression ADD expression .
+    (1) expression -> expression . ADD expression
+    (2) expression -> expression . SUB expression
+    (3) expression -> expression . TIMES expression
+    (4) expression -> expression . DIVIDE expression
+
+    ADD             reduce using rule 1 (expression -> expression ADD expression .)
+    SUB             reduce using rule 1 (expression -> expression ADD expression .)
+    $end            reduce using rule 1 (expression -> expression ADD expression .)
+    RPAREN          reduce using rule 1 (expression -> expression ADD expression .)
+    TIMES           shift and go to state 6
+    DIVIDE          shift and go to state 7
+
+  ! TIMES           [ reduce using rule 1 (expression -> expression ADD expression .) ]
+  ! DIVIDE          [ reduce using rule 1 (expression -> expression ADD expression .) ]
+  ! ADD             [ shift and go to state 4 ]
+  ! SUB             [ shift and go to state 5 ]
+
+
+state 10
+
+    (2) expression -> expression SUB expression .
+    (1) expression -> expression . ADD expression
+    (2) expression -> expression . SUB expression
+    (3) expression -> expression . TIMES expression
+    (4) expression -> expression . DIVIDE expression
+
+    ADD             reduce using rule 2 (expression -> expression SUB expression .)
+    SUB             reduce using rule 2 (expression -> expression SUB expression .)
+    $end            reduce using rule 2 (expression -> expression SUB expression .)
+    RPAREN          reduce using rule 2 (expression -> expression SUB expression .)
+    TIMES           shift and go to state 6
+    DIVIDE          shift and go to state 7
+
+  ! TIMES           [ reduce using rule 2 (expression -> expression SUB expression .) ]
+  ! DIVIDE          [ reduce using rule 2 (expression -> expression SUB expression .) ]
+  ! ADD             [ shift and go to state 4 ]
+  ! SUB             [ shift and go to state 5 ]
+
+
+state 11
+
+    (3) expression -> expression TIMES expression .
+    (1) expression -> expression . ADD expression
+    (2) expression -> expression . SUB expression
+    (3) expression -> expression . TIMES expression
+    (4) expression -> expression . DIVIDE expression
+
+    ADD             reduce using rule 3 (expression -> expression TIMES expression .)
+    SUB             reduce using rule 3 (expression -> expression TIMES expression .)
+    TIMES           reduce using rule 3 (expression -> expression TIMES expression .)
+    DIVIDE          reduce using rule 3 (expression -> expression TIMES expression .)
+    $end            reduce using rule 3 (expression -> expression TIMES expression .)
+    RPAREN          reduce using rule 3 (expression -> expression TIMES expression .)
+
+  ! ADD             [ shift and go to state 4 ]
+  ! SUB             [ shift and go to state 5 ]
+  ! TIMES           [ shift and go to state 6 ]
+  ! DIVIDE          [ shift and go to state 7 ]
+
+
+state 12
+
+    (4) expression -> expression DIVIDE expression .
+    (1) expression -> expression . ADD expression
+    (2) expression -> expression . SUB expression
+    (3) expression -> expression . TIMES expression
+    (4) expression -> expression . DIVIDE expression
+
+    ADD             reduce using rule 4 (expression -> expression DIVIDE expression .)
+    SUB             reduce using rule 4 (expression -> expression DIVIDE expression .)
+    TIMES           reduce using rule 4 (expression -> expression DIVIDE expression .)
+    DIVIDE          reduce using rule 4 (expression -> expression DIVIDE expression .)
+    $end            reduce using rule 4 (expression -> expression DIVIDE expression .)
+    RPAREN          reduce using rule 4 (expression -> expression DIVIDE expression .)
+
+  ! ADD             [ shift and go to state 4 ]
+  ! SUB             [ shift and go to state 5 ]
+  ! TIMES           [ shift and go to state 6 ]
+  ! DIVIDE          [ shift and go to state 7 ]
+
+
+state 13
+
+    (6) expression -> LPAREN expression RPAREN .
+
+    ADD             reduce using rule 6 (expression -> LPAREN expression RPAREN .)
+    SUB             reduce using rule 6 (expression -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 6 (expression -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 6 (expression -> LPAREN expression RPAREN .)
+    $end            reduce using rule 6 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 6 (expression -> LPAREN expression RPAREN .)
+
